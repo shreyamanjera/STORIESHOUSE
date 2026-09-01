@@ -1,0 +1,52 @@
+.gallery {
+  --ag-accent: #fff;
+  --ag-overlay: #060010;
+  --ag-text: #fff;
+  --ag-gap: 10px;
+  --ag-radius: 16px;
+  display: flex;
+  flex-direction: row;
+  gap: var(--ag-gap);
+  width: 100%;
+  max-width: 100%;
+  perspective: 1400px;
+  perspective-origin: 50% 50%;
+}
+
+.panel {
+  position: relative;
+  flex: 1 1 0;
+  min-width: 0;
+  min-height: 0;
+  overflow: hidden;
+  border-radius: var(--ag-radius);
+  cursor: pointer;
+  display: block;
+  text-decoration: none;
+  outline: none;
+  transform-style: preserve-3d;
+  transform-origin: center;
+  background: #0a0713;
+  box-shadow: 0 10px 30px -18px rgb(0 0 0 / 80%);
+  will-change: flex-grow, transform;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.panel:focus-visible { box-shadow: 0 0 0 2px var(--ag-accent), 0 10px 30px -18px rgb(0 0 0 / 80%); }
+.frame { position: absolute; inset: 0; overflow: hidden; border-radius: inherit; }
+.media { position: absolute; top: 0; left: -130px; width: calc(100% + 260px); height: 100%; will-change: transform, filter; }
+.media img { width: 100%; height: 100%; object-fit: cover; display: block; user-select: none; -webkit-user-drag: none; }
+.overlay { position: absolute; inset: 0; pointer-events: none; background: linear-gradient(180deg, transparent 45%, color-mix(in srgb, var(--ag-overlay) 78%, transparent) 100%), color-mix(in srgb, var(--ag-overlay) 35%, transparent); }
+.label { position: absolute; left: 20px; right: 20px; bottom: 20px; display: flex; align-items: center; gap: 12px; z-index: 2; visibility: hidden; opacity: 0; }
+.bar { flex: 0 0 auto; width: 3px; height: 26px; border-radius: 3px; background: var(--ag-accent); box-shadow: 0 0 12px color-mix(in srgb, var(--ag-accent) 60%, transparent); }
+.text { color: var(--ag-text); font: 600 clamp(1rem, 1.4vw, 1.4rem)/1.1 inherit; letter-spacing: .01em; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; text-shadow: 0 2px 14px rgb(0 0 0 / 55%); }
+
+.centeredLabels .label { inset: 0; justify-content: center; gap: 0; }
+.centeredLabels .bar { display: none; }
+.centeredLabels .text { max-width: calc(100% - 28px); color: var(--ag-text); font: 600 italic clamp(1.05rem, 1.55vw, 1.55rem)/1.05 "Playfair Display", serif; letter-spacing: -.025em; text-align: center; text-shadow: 0 2px 16px rgb(0 0 0 / 72%); }
+
+@media (max-width: 720px) {
+  .gallery { min-width: 760px; height: 400px !important; }
+}
+
+@media (prefers-reduced-motion: reduce) { .panel, .media { will-change: auto; } }

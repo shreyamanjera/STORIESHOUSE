@@ -1,0 +1,24 @@
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(230px, 1fr));
+  gap: 18px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 10px 3vw 40px;
+  overflow-x: auto;
+  scrollbar-width: thin;
+}
+
+.card {
+  position: relative;
+  height: min(48vw, 560px);
+  min-height: 440px;
+  background: transparent;
+}
+
+.loading { height: 100%; background: linear-gradient(120deg, #eee0d9, #fbf7f4, #eee0d9); }
+
+@media (max-width: 900px) {
+  .gallery { grid-template-columns: repeat(5, minmax(255px, 1fr)); padding-inline: 5vw; }
+  .card { height: 530px; }
+}
