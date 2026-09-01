@@ -14,18 +14,18 @@ const slides = [
 
 export default function HeroSlideshow() {
   const [activeSlide, setActiveSlide] = useState(0);
-  const [loadedSlides, setLoadedSlides] = useState(() => new Set());
-
   useEffect(() => {
+    slides.slice(1).forEach(({ src }) => {
+      const image = new window.Image();
+      image.src = src;
+    });
+
     const timer = window.setInterval(() => {
-      setActiveSlide((current) => {
-        const next = (current + 1) % slides.length;
-        return loadedSlides.has(next) ? next : current;
-      });
-    }, 6000);
+      setActiveSlide((current) => (current + 1) % slides.length);
+    }, 3500);
 
     return () => window.clearInterval(timer);
-  }, [loadedSlides]);
+  }, []);
 
   return (
     <>
@@ -33,7 +33,7 @@ export default function HeroSlideshow() {
         {slides.map((slide, index) => {
           const isActive = activeSlide === index;
 
-          return <span key={slide.className} className={`hero-slide ${slide.className}${isActive ? " is-active" : ""}`}><Image className="hero-slide-image" src={slide.src} alt="" fill priority={index === 0} loading={index === 0 ? undefined : "eager"} sizes="100vw" onLoad={() => setLoadedSlides((current) => new Set(current).add(index))} /></span>;
+          return <span key={slide.className} className={`hero-slide ${slide.className}${isActive ? " is-active" : ""}`} style={index === 0 ? { backgroundImage: `url('${slide.src}')` } : undefined}><Image className="hero-slide-image" src={slide.src} alt="" fill priority={index === 0} loading={index === 0 ? undefined : "eager"} unoptimized sizes="100vw" /></span>;
         })}
       </div>
       <div className="slide-status" aria-label="Six wedding photographs rotate automatically">

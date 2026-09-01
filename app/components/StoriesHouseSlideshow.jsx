@@ -4,11 +4,11 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 
 const slides = [
-  { src: "/stories-house-welcome-haldi.jpg", position: "center 60%" },
-  { src: "/stories-house-slides/ceremony-clean.png", position: "center 58%" },
-  { src: "/stories-house-slides/floral-ceremony-clean.png", position: "center" },
-  { src: "/stories-house-slides/rings-clean.png", position: "center" },
-  { src: "/stories-house-slides/couple-outdoors-clean.png", position: "center" }
+  { src: "/stories-house-slides/optimized/welcome-haldi-landscape.jpg", position: "center" },
+  { src: "/stories-house-slides/optimized/ceremony.jpg", position: "center 58%" },
+  { src: "/stories-house-slides/optimized/floral-ceremony.jpg", position: "center" },
+  { src: "/stories-house-slides/optimized/rings.jpg", position: "center" },
+  { src: "/stories-house-slides/optimized/couple-outdoors.jpg", position: "center" }
 ];
 
 export default function StoriesHouseSlideshow() {
@@ -16,12 +16,17 @@ export default function StoriesHouseSlideshow() {
   const [previousSlide, setPreviousSlide] = useState(null);
 
   useEffect(() => {
+    slides.slice(1).forEach(({ src }) => {
+      const image = new window.Image();
+      image.src = src;
+    });
+
     const timer = window.setInterval(() => {
       setActiveSlide((current) => {
         setPreviousSlide(current);
         return (current + 1) % slides.length;
       });
-    }, 6000);
+    }, 3500);
 
     return () => window.clearInterval(timer);
   }, []);
@@ -39,7 +44,7 @@ export default function StoriesHouseSlideshow() {
 
         return (
           <span className={`stories-house-slide${activeSlide === index ? " is-active" : ""}`} key={slide.src}>
-            {visible && <Image src={slide.src} alt="" fill priority={index === 0} sizes="100vw" style={{ objectPosition: slide.position }} />}
+            {visible && <Image src={slide.src} alt="" fill priority={index === 0} unoptimized sizes="100vw" style={{ objectPosition: slide.position }} />}
           </span>
         );
       })}

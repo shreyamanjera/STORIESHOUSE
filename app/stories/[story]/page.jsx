@@ -12,7 +12,7 @@ export default async function StoryPage({ params }) {
   return <main className={`story-page ${styles.page}`}>
     <header className={styles.header}>
       <Link href="/stories" className={styles.back}>← BACK TO STORIES</Link>
-      <p>STORIES HOUSE · CLIENT JOURNEY</p>
+      <p>STORIES HOUSE · JOURNEY</p>
     </header>
     <section className={styles.intro}>
       <p className={styles.eyebrow}>A LOVE STORY</p>
@@ -22,7 +22,7 @@ export default async function StoryPage({ params }) {
     <section className={styles.journey} aria-label={`${selectedStory.name} photo journey`}>
       <div className={styles.photoWall}>
         {selectedStory.photos.map((image, index) => <article className={`${styles.moment} ${styles[`moment${(index % 6) + 1}`]}`} key={image}>
-          <figure className={styles.photo}><Image src={image} alt={`${selectedStory.name} wedding moment ${index + 1}`} fill sizes="(max-width: 720px) 92vw, (max-width: 1100px) 44vw, 26vw" /></figure>
+          <figure className={styles.photo}><Image src={image} alt={`${selectedStory.name} wedding moment ${index + 1}`} fill loading="eager" sizes="(max-width: 720px) 92vw, (max-width: 1100px) 44vw, 26vw" /></figure>
         </article>)}
       </div>
     </section>

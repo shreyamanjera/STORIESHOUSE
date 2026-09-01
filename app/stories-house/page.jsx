@@ -15,18 +15,17 @@ export default function StoriesHousePage() {
     <main className="stories-house-page">
       <header className="stories-house-nav">
         <StoriesHouseMenu />
+        <Image className="stories-house-header-logo" src="/storieshouse-black-cropped.png" alt="Stories House" width={160} height={69} priority />
         <SocialLinks className="stories-house-social-links" />
       </header>
       <section className="stories-house-hero">
-        <StoriesHouseSlideshow />
-        <div className="stories-house-shade" style={{ background: "linear-gradient(180deg, rgba(46, 4, 17, 0.16), rgba(46, 4, 17, 0.32))" }} />
-        <div className="stories-house-copy">
-          <Image className="stories-house-hero-logo" src="/storieshouse-white-cropped.png" alt="Stories House" width={300} height={129} priority />
+        <div className="stories-house-photo-frame" style={{ backgroundImage: "url('/stories-house-slides/optimized/welcome-haldi-landscape.jpg')", backgroundPosition: "center", backgroundSize: "cover" }}>
+          <StoriesHouseSlideshow />
         </div>
       </section>
       <section className="home-photographer" aria-labelledby="home-photographer-title">
-        <div className="home-photographer-image"><Image src="/photographer/pratik-at-work.jpeg" alt="Pratik Singh photographing by the water" fill sizes="(max-width: 720px) 100vw, 42vw" /></div>
-        <div className="home-photographer-copy"><p className="eyebrow">BEHIND THE LENS</p><h2 id="home-photographer-title">Pratik Singh.</h2><p>For over a decade, Pratik has documented the fleeting glances, laughter, and quiet in-between moments that make every celebration unmistakably yours.</p><Link className="home-photographer-link" href="/about">More about the photographer <span>→</span></Link></div>
+        <div className="home-photographer-image"><Image src="/photographer/pratik-at-work.jpeg" alt="Pratik Singh photographing by the water" fill loading="eager" sizes="(max-width: 720px) 100vw, 42vw" /></div>
+        <div className="home-photographer-copy"><p className="eyebrow">BEHIND THE LENS</p><h2 id="home-photographer-title">Pratik Singh.</h2><p>For over a decade, Pratik has documented the fleeting glances, laughter, and quiet in-between moments that make every celebration unmistakably yours.</p><Link className="home-photographer-link" href="/about">More about Pratik <span>→</span></Link></div>
       </section>
       <section className="gallery-showcase gallery-showcase-stories" aria-label="Featured client stories">
         <div className="gallery-showcase-content"><div className="gallery-showcase-heading"><p className="eyebrow">STORIES</p><h2>Love, in<br /><em>motion.</em></h2><p>Browse a small selection of celebrations we have had the honour of documenting.</p></div><StoriesCardRow /></div>

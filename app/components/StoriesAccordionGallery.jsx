@@ -14,7 +14,7 @@ export default function StoriesAccordionGallery() {
     <div className="stories-editorial-grid">
       {items.map((item) => (
         <Link className="stories-editorial-card" href={item.link} key={item.link}>
-          <span className="stories-editorial-image"><Image src={item.image} alt={`${item.label} wedding story`} fill sizes="(max-width: 720px) 100vw, 42vw" /></span>
+          <span className="stories-editorial-image"><Image src={item.image} alt={`${item.label} wedding story`} fill loading="eager" sizes="(max-width: 720px) 100vw, 42vw" /></span>
           <h2>{item.label}</h2>
         </Link>
       ))}
