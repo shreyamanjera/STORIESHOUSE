@@ -4,11 +4,17 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 
 const slides = [
-  { src: "/stories-house-slides/optimized/welcome-haldi-landscape.jpg", position: "center" },
-  { src: "/stories-house-slides/optimized/ceremony.jpg", position: "center 58%" },
-  { src: "/stories-house-slides/optimized/floral-ceremony.jpg", position: "center" },
-  { src: "/stories-house-slides/optimized/rings.jpg", position: "center" },
-  { src: "/stories-house-slides/optimized/couple-outdoors.jpg", position: "center" }
+  { src: "/stories-house-slides/current/slide-01.jpg", position: "center" },
+  { src: "/stories-house-slides/current/slide-02.jpg", position: "center" },
+  { src: "/stories-house-slides/current/slide-03.jpg", position: "center" },
+  { src: "/stories-house-slides/current/slide-04.jpg", position: "center" },
+  { src: "/stories-house-slides/current/slide-05.jpg", position: "center" },
+  { src: "/stories-house-slides/current/slide-06.jpg", position: "center" },
+  { src: "/stories-house-slides/current/slide-07.jpg", position: "center" },
+  { src: "/stories-house-slides/current/slide-08.jpg", position: "center" },
+  { src: "/stories-house-slides/current/slide-09.jpg", position: "center" },
+  { src: "/stories-house-slides/current/slide-10.jpg", position: "center" },
+  { src: "/stories-house-slides/current/slide-11.jpg", position: "center" }
 ];
 
 export default function StoriesHouseSlideshow() {
@@ -26,25 +32,23 @@ export default function StoriesHouseSlideshow() {
         setPreviousSlide(current);
         return (current + 1) % slides.length;
       });
-    }, 3500);
+    }, 2000);
 
     return () => window.clearInterval(timer);
   }, []);
 
   useEffect(() => {
     if (previousSlide === null) return;
-    const timer = window.setTimeout(() => setPreviousSlide(null), 950);
+    const timer = window.setTimeout(() => setPreviousSlide(null), 350);
     return () => window.clearTimeout(timer);
   }, [previousSlide]);
 
   return (
     <div className="stories-house-slides" aria-hidden="true">
       {slides.map((slide, index) => {
-        const visible = activeSlide === index || previousSlide === index;
-
         return (
           <span className={`stories-house-slide${activeSlide === index ? " is-active" : ""}`} key={slide.src}>
-            {visible && <Image src={slide.src} alt="" fill priority={index === 0} unoptimized sizes="100vw" style={{ objectPosition: slide.position }} />}
+            <Image src={slide.src} alt="" fill preload={index === 0} loading={index === 0 ? undefined : "eager"} decoding="sync" unoptimized sizes="100vw" style={{ objectPosition: slide.position }} />
           </span>
         );
       })}

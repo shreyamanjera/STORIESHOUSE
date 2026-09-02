@@ -475,7 +475,7 @@ body { background:var(--paper); color:var(--ink); }
 }
 .stories-house-social-links { grid-column: 3; justify-self: end; color: currentColor; }
 .stories-house-hero { display: block; min-height: 0; padding: 0 3.5vw 62px; overflow: visible; background: var(--paper-light); }
-.stories-house-photo-frame { position: relative; width: 100%; aspect-ratio: 16 / 9; overflow: hidden; background: #e7e0d3; }
+.stories-house-photo-frame { position: relative; width: 100%; aspect-ratio: 3 / 2; overflow: hidden; background: #e7e0d3; }
 
 .stories-house-slides {
   position: absolute;
@@ -500,7 +500,7 @@ body { background:var(--paper); color:var(--ink); }
   .stories-house-nav { min-height: 78px; padding: 12px 22px; }
   .stories-house-header-logo { width: 118px; }
   .stories-house-hero { padding: 0 16px 34px; }
-  .stories-house-photo-frame { aspect-ratio: 4 / 5; }
+  .stories-house-photo-frame { aspect-ratio: 3 / 2; }
 }
 
 /* Contact page: a compact, centered introduction without the side image. */
@@ -650,6 +650,9 @@ body { background:var(--paper); color:var(--ink); }
 
 /* The landing page intentionally ends after the rotating hero. */
 body:has(main#home) .site-footer { display: none; }
+html:has(main#home), body:has(main#home) { overflow: hidden; }
+main#home { height: 100svh; overflow: hidden; }
+main#home > .hero.hero-slideshow { min-height: 100svh; height: 100svh; }
 
 /* Shared footer: keep all primary contact actions on a single clean desktop row. */
 @media (min-width: 721px) {
@@ -853,6 +856,45 @@ body:has(main#home) .site-footer { display: none; }
 /* Landing slideshow: all optimized images load up front, then switch directly
    so the page never exposes the fallback color between photographs. */
 .hero-slide { transition: none; }
+.hero-slide-picture { position: absolute; inset: 0; display: block; }
+.hero-slide-image { position: absolute; inset: 0; width: 100%; height: 100%; }
+
+/* Landing photographs are shown without the site's decorative colour grading. */
+main#home > .hero.hero-slideshow::before {
+  background: transparent !important;
+  opacity: 0;
+}
+
+main#home > .hero.hero-slideshow .hero-slide-image {
+  filter: none;
+}
+
+main#home > .hero.hero-slideshow .ios-cta {
+  margin-top: 48px;
+  gap: 16px;
+  padding: 10px 11px 10px 24px;
+  border: 1px solid rgba(255, 255, 255, .85);
+  border-radius: 999px;
+  background: transparent;
+  box-shadow: none;
+  font-size: 13px;
+  letter-spacing: .05em;
+}
+
+main#home > .hero.hero-slideshow .ios-cta span {
+  width: 38px;
+  height: 38px;
+  color: #fff;
+  border: 1px solid currentColor;
+  background: transparent;
+  font-size: 20px;
+}
+
+main#home > .hero.hero-slideshow .ios-cta:hover {
+  background: transparent;
+  box-shadow: none;
+  transform: none;
+}
 
 @media (min-width: 721px) {
   main#home > .hero.hero-slideshow .hero-copy,
@@ -872,7 +914,189 @@ body:has(main#home) .site-footer { display: none; }
 }
 
 @media (max-width: 720px) {
-  main#home > .hero.hero-slideshow .hero-copy h1 { white-space: normal; }
+  main#home > .hero.hero-slideshow {
+    padding: 16px;
+    background-color: #fff !important;
+    background-image: none !important;
+  }
+
+  main#home > .hero.hero-slideshow .hero-background { inset: 16px !important; }
+  main#home > .hero.hero-slideshow .hero-slide { background-color: #fff; }
+  main#home > .hero.hero-slideshow .hero-slide-image {
+    object-fit: cover;
+    object-position: center;
+  }
+
+  main#home > .hero.hero-slideshow .hero-social-links {
+    top: auto;
+    right: 50%;
+    bottom: 38px;
+    transform: translateX(50%);
+  }
+
+  main#home > .hero.hero-slideshow .hero-copy h1 {
+    white-space: normal;
+    font-size: 19px;
+    line-height: 1.05;
+  }
   .landing-headline-break { display: none; }
-  main#home > .hero.hero-slideshow .landing-headline-line { display: inline; white-space: normal; }
+  main#home > .hero.hero-slideshow .landing-headline-line { display: block; white-space: nowrap; }
+
+  /* Shift only this portrait down inside its frame; the UI stays untouched. */
+  main#home > .hero.hero-slideshow .landing-slide-01 .hero-slide-image {
+    object-position: center;
+    transform: scale(1.24);
+    transform-origin: center top;
+  }
+}
+
+/* Keep the Love in Motion carousel compact and easy to browse. */
+.gallery-showcase-stories .stories-card-row {
+  gap: 14px;
+  padding-right: 8vw;
+}
+
+.gallery-showcase-stories .stories-depth-card {
+  flex-basis: clamp(260px, 22vw, 320px);
+}
+
+.gallery-showcase-stories .stories-depth-card,
+.gallery-showcase-stories .stories-depth-card .depth-carousel {
+  min-height: 480px;
+}
+
+.gallery-showcase-stories .stories-depth-card .depth-carousel__caption {
+  top: 34px;
+  right: 12px;
+  bottom: auto;
+  left: 50%;
+  width: max-content;
+  max-width: calc(100% - 24px);
+  margin: 0;
+  padding: 0;
+  transform: translateX(-50%);
+  color: #fff;
+  background: transparent;
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+  font-size: 22px;
+  text-align: center;
+  white-space: nowrap;
+}
+
+@media (max-width: 720px) {
+  .gallery-showcase-stories .stories-card-row {
+    gap: 12px;
+    padding: 0 22px 16px;
+  }
+
+  .gallery-showcase-stories .stories-depth-card {
+    flex-basis: 70vw;
+  }
+
+  .gallery-showcase-stories .stories-depth-card,
+  .gallery-showcase-stories .stories-depth-card .depth-carousel {
+    min-height: 430px;
+  }
+
+  .gallery-showcase-stories .stories-depth-card .depth-carousel__caption {
+    top: 28px;
+    font-size: 18px;
+  }
+}
+
+/* Frosted glass controls, inspired by the lightweight iOS interface. */
+main#home > .hero.hero-slideshow .ios-cta {
+  background: rgb(255 255 255 / 16%);
+  border-color: rgb(255 255 255 / 56%);
+  box-shadow: inset 0 1px 0 rgb(255 255 255 / 45%), 0 12px 30px rgb(18 8 10 / 18%);
+  -webkit-backdrop-filter: blur(18px) saturate(160%);
+  backdrop-filter: blur(18px) saturate(160%);
+}
+
+main#home > .hero.hero-slideshow .ios-cta span {
+  background: rgb(255 255 255 / 12%);
+  box-shadow: inset 0 1px 0 rgb(255 255 255 / 38%);
+  -webkit-backdrop-filter: blur(12px) saturate(160%);
+  backdrop-filter: blur(12px) saturate(160%);
+}
+
+main#home > .hero.hero-slideshow .ios-cta:hover {
+  background: rgb(255 255 255 / 25%);
+}
+
+.site-footer-book {
+  border-color: rgb(255 255 255 / 45%);
+  background: rgb(116 21 42 / 58%);
+  box-shadow: inset 0 1px 0 rgb(255 255 255 / 38%), 0 10px 22px rgb(81 23 37 / 15%);
+  -webkit-backdrop-filter: blur(18px) saturate(150%);
+  backdrop-filter: blur(18px) saturate(150%);
+}
+
+.site-footer-book:hover {
+  background: rgb(116 21 42 / 72%);
+}
+
+.social-glass,
+.site-footer-socials a {
+  background: rgb(255 255 255 / 20%) !important;
+  border-color: rgb(255 255 255 / 50%) !important;
+  box-shadow: inset 0 1px 0 rgb(255 255 255 / 44%), 0 7px 18px rgb(55 26 30 / 10%);
+  -webkit-backdrop-filter: blur(16px) saturate(150%);
+  backdrop-filter: blur(16px) saturate(150%);
+}
+
+.social-glass:hover,
+.site-footer-socials a:hover {
+  background: rgb(255 255 255 / 34%) !important;
+}
+
+.stories-house-instagram-link {
+  width: fit-content;
+  margin-inline: auto;
+  padding: 9px 13px;
+  border: 1px solid;
+  border-radius: 999px;
+  text-decoration: none;
+}
+
+.gallery-showcase-stories .depth-carousel__title-overlay {
+  position: absolute;
+  z-index: 1;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(180deg, rgb(13 9 10 / 27%), rgb(13 9 10 / 8%) 42%, transparent 70%);
+}
+
+.gallery-showcase-stories .depth-carousel__caption {
+  z-index: 2;
+}
+
+/* Refine the glass contrast without changing the button hierarchy. */
+main#home > .hero.hero-slideshow .ios-cta {
+  background: rgb(255 255 255 / 20%);
+}
+
+main#home > .hero.hero-slideshow .ios-cta:hover {
+  background: rgb(255 255 255 / 28%);
+}
+
+.social-glass,
+.site-footer-socials a {
+  color: #111 !important;
+  background: rgb(255 255 255 / 12%) !important;
+  border-color: rgb(255 255 255 / 38%) !important;
+}
+
+.social-glass:hover,
+.site-footer-socials a:hover {
+  color: #111 !important;
+  background: rgb(255 255 255 / 20%) !important;
+}
+
+.site-footer-book,
+.site-footer-book:hover {
+  color: #fff;
+  border-color: #b31231;
+  background: #b31231;
 }

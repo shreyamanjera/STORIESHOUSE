@@ -90,7 +90,7 @@ export default function AccordionGallery({
     >
       <span className={styles.frame}>
         <span className={styles.media} ref={(element) => { media.current[index] = element; }}>
-          <img src={item.image} alt={item.label} />
+          <img src={item.image} alt={item.label} loading="eager" decoding="sync" />
         </span>
         <span className={styles.overlay} />
       </span>

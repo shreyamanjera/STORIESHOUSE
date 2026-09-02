@@ -372,7 +372,7 @@ const DepthCarousel = ({
         {data.map((item, i) => (
           <div
             key={i}
-            className="depth-carousel__card"
+            className={`depth-carousel__card${item.titleOverlay ? ' depth-carousel__card--title-overlay' : ''}`}
             ref={el => (cardRefs.current[i] = el)}
             style={{ width: cardWidth, height: cardHeight, borderRadius: radius }}
             aria-roledescription="slide"
@@ -380,12 +380,13 @@ const DepthCarousel = ({
             aria-hidden={active !== i}
             onClick={() => onCardClick(i)}
           >
-            <img className="depth-carousel__img" src={item.image} alt={item.alt || ''} draggable={false} loading="eager" decoding="async" />
+            <img className="depth-carousel__img" src={item.image} alt={item.alt || ''} draggable={false} loading="eager" decoding="sync" />
             <span
               className="depth-carousel__tint"
               ref={el => (overlayRefs.current[i] = el)}
               style={{ background: tint }}
             />
+            {item.titleOverlay && <span className="depth-carousel__title-overlay" aria-hidden="true" />}
             {item.title && <span className="depth-carousel__caption">{item.title}</span>}
             {item.href && (
               <a

@@ -3,6 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { stories } from "../../data/stories";
 import styles from "./StoryJourney.module.css";
+import StoryPhotoWall from "./StoryPhotoWall";
 
 export default async function StoryPage({ params }) {
   const { story } = await params;
@@ -20,11 +21,7 @@ export default async function StoryPage({ params }) {
       <p>Every wedding unfolds in its own way. This is a collection of the moments, people, and feelings that made this day theirs.</p>
     </section>
     <section className={styles.journey} aria-label={`${selectedStory.name} photo journey`}>
-      <div className={styles.photoWall}>
-        {selectedStory.photos.map((image, index) => <article className={`${styles.moment} ${styles[`moment${(index % 6) + 1}`]}`} key={image}>
-          <figure className={styles.photo}><Image src={image} alt={`${selectedStory.name} wedding moment ${index + 1}`} fill loading="eager" sizes="(max-width: 720px) 92vw, (max-width: 1100px) 44vw, 26vw" /></figure>
-        </article>)}
-      </div>
+      <StoryPhotoWall storyName={selectedStory.name} photos={selectedStory.photos} />
     </section>
     <footer className={styles.closing}>
       <Link href="/stories" className={styles.explore}>EXPLORE MORE STORIES <span>→</span></Link>

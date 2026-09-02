@@ -2,8 +2,8 @@ import Image from "next/image";
 import Link from "next/link";
 
 const items = [
-  { image: "/stories/anwita-ashish/anwita-ashish-01.jpg", label: "Anwita & Ashish", link: "/stories/aditi-rohan" },
-  { image: "/stories/mansi-abhijeet/mansi-abhijeet-01.jpg", label: "Mansi & Abhijeet", link: "/stories/ishita-veer" },
+  { image: "/stories/anwita-ashish/anwita-ashish-06.jpg", label: "Anwita & Ashish", link: "/stories/aditi-rohan" },
+  { image: "/stories/mansi-abhijeet/mansi-abhijeet-02.jpg", label: "Mansi & Abhijeet", link: "/stories/ishita-veer" },
   { image: "/stories/tanishq-ashi/tanishq-ashi-01.jpg", label: "Tanishq & Ashi", link: "/stories/meera-arjun" },
   { image: "/stories/sushma-vishal/sushma-vishal-01.jpg", label: "Sushma & Vishal", link: "/stories/anaya-karan" },
   { image: "/stories/yukti-bal/yukti-bal-01.png", label: "Yukti & Bal", link: "/stories/riya-kabir" }

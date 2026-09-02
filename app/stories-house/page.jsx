@@ -19,7 +19,7 @@ export default function StoriesHousePage() {
         <SocialLinks className="stories-house-social-links" />
       </header>
       <section className="stories-house-hero">
-        <div className="stories-house-photo-frame" style={{ backgroundImage: "url('/stories-house-slides/optimized/welcome-haldi-landscape.jpg')", backgroundPosition: "center", backgroundSize: "cover" }}>
+        <div className="stories-house-photo-frame" style={{ backgroundImage: "url('/stories-house-slides/current/slide-01.jpg')", backgroundPosition: "center", backgroundSize: "cover" }}>
           <StoriesHouseSlideshow />
         </div>
       </section>
@@ -39,7 +39,7 @@ export default function StoriesHousePage() {
           <figure><blockquote>“These guys have the rare ability to make people comfortable in front of camera and it truly shows in the results. From creativity to editing to attention to detail, everything is just perfect. Incredible team and highly recommend.”</blockquote><figcaption>Devansh &amp; Kritika</figcaption></figure>
           <figure><blockquote>“A warm, thoughtful team that caught every feeling without ever making the day feel staged. We love every frame.”</blockquote><figcaption>Tanishq &amp; Ashi</figcaption></figure>
         </div>
-        <div className="testimonials-contact"><span>Planning your own story?</span><a href="mailto:mail.storieshouse@gmail.com">mail.storieshouse@gmail.com</a><a href="tel:+916205392670">+91 62053 92670</a><a href="https://instagram.com/storieshouse.official" target="_blank" rel="noreferrer">@storieshouse.official ↗</a></div>
+        <div className="testimonials-contact"><span>Planning your own story?</span><a href="mailto:mail.storieshouse@gmail.com">mail.storieshouse@gmail.com</a><a href="tel:+916205392670">+91 62053 92670</a><a className="social-glass stories-house-instagram-link" href="https://instagram.com/storieshouse.official" target="_blank" rel="noreferrer">@storieshouse.official ↗</a></div>
       </section>
       <section className="stories-house-note">
         <p className="eyebrow">OUR POINT OF VIEW</p>
